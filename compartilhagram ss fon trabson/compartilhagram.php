@@ -11,7 +11,7 @@
 
 	<!-- TODO: Formulário de login -->
 
-	<form method="POST">
+	<form method="POST" action="Controlador/Usuário/cadastrausuario.php" novalidate>
 		<input name="nomePróprio" type="text" minlength='3' maxlength='35' placeholder="Nome próprio" required />
 		<input name="sobrenome" type="text" minlength='3' maxlength='35' placeholder="Sobrenome" required /><br/>
 
