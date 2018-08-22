@@ -1,14 +1,32 @@
 <!DOCTYPE HTML>
 <?php 
-	if ($_REQUEST == false){
+	$erros = [];
+	
 		$request = array_map('trim', $_REQUEST);
 		
 		$request = filter_var_array($request,[ 'nomePróprio' => FILTER_DEFAULT, 'sobrenome' => FILTER_DEFAULT,
 												'email' => FILTER_VALIDATE_EMAIL, 'senha' => FILTER_DEFAULT,
 												'confirmasenha'=> FILTER_DEFAULT, 'alertasEmail' => FILTER_VALIDATE_BOOLEAN,
-												'aceitaTermos' => FILTER_VALIDATE_BOOLEAN
+												'aceitaTermos' => FILTER_VALIDATE_BOOLEAN,
+												'dataNasc' => FILTER_DEFAULT 
 		]
 		);
+		$dia = $request['dataNasc'];
+		$dataa = DateTime::createFromFormat('Y-m-d', $dia);
+		if ($dataa == true){
+			$agr = new DateTime();
+			$subt = $dataa->diff($agr);		
+			$qtdddd = $subt->days;
+			$qtddda = $subt->y;
+		
+			echo "<p> Quantidade de dias $qtdddd de você</p>";
+			echo "<p> Quantidade de anos $qtddda de você</p>";
+			}
+		else{
+			$erros[] = "O formato de data é inválido.";
+		}
+		
+		
 		
 		$nome = $request['nomePróprio'];
 		if ($nome == false){
@@ -40,8 +58,8 @@
 		if ($aceitaTermos == false){
 			$erros[] = "Aceite os termos de uso, vacilão.";  
 		}
-		
-	}
 
-	 foreach($erros as $msg) { echo $msg }
+	 foreach($erros as $msg){
+		 echo " Uma ameaça foi detectada:  <strong>$msg</strong> <br><br>";
+	 }
 ?>
