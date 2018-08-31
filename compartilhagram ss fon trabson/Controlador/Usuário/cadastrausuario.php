@@ -22,7 +22,7 @@
 			echo "<p> Quantidade de dias $qtdddd de você</p>";
 			echo "<p> Quantidade de anos $qtddda de você</p>";
 			if($qtddda < 16){
-				echo "tu é de menó pilantra, ACESSO NEGADO PÁ VC<br>";
+				echo "tu é de menó pilantra, ACESSO NEGADO PÁ TU<br>";
 			}
 			}
 		else{
